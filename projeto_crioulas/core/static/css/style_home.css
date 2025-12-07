@@ -1,0 +1,188 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    font-family: 'Antonio', sans-serif; /* Fonte bem alta e estreita */
+    overflow: hidden; /* IMPEDE A ROLAGEM (Scroll) */
+    height: 100vh;
+    color: white;
+}
+
+/* --- O FUNDO ROXO E ROSA --- */
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    
+    /* Coloque a foto de uma jogadora (rosto em destaque) aqui */
+    background-image: url('../img/bg-pretobranco.png'); 
+    background-size: cover;
+    background-position: center;
+
+    /* O Segredo da Cor: Filtro Duotone Roxo/Rosa */
+    /* Isso cria aquele efeito de cor sólida sobre a foto igual ao site vermelho */
+    box-shadow: inset 0 0 0 1000px rgba(75, 0, 130, 0.6); /* Roxo base */
+}
+
+/* Cria um gradiente Roxo para Rosa por cima da imagem */
+.background-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(75, 0, 130, 0.8), rgba(255, 20, 147, 0.8)); /* Roxo para Rosa */
+    mix-blend-mode: multiply; /* Mistura com a foto */
+}
+
+/* --- CONTAINER PRINCIPAL --- */
+.main-container {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- NAVEGAÇÃO SUPERIOR --- */
+.top-nav {
+    position: absolute;
+    top: 40px;
+    right: 100px; /* Afastado da barra lateral */
+    display: flex;
+    gap: 40px;
+    z-index: 10;
+}
+
+.top-nav a {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Antonio', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.top-nav a:hover {
+    color: #ff1493; /* Rosa neon no hover */
+}
+
+/* --- LOGO CANTO ESQUERDO --- */
+.logo-corner {
+    position: absolute;
+    top: 40px;
+    left: 50px;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* --- TEXTO ESPALHADO (C R I O U L A S) --- */
+.scattered-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    z-index: 2;
+}
+
+/* Estilo das letras */
+.letter {
+    font-size: 10vw; /* Tamanho gigante responsivo */
+    line-height: 0.9;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 0 15px; /* Espaço entre as letras */
+}
+
+/* As linhas para organizar o "caos" organizado */
+.line-1 { margin-left: -100px; } /* Desloca um pouco pra esquerda */
+.line-2 { margin-left: 50px; }   /* Desloca um pouco pra direita */
+.line-3 { margin-left: -50px; }
+
+/* As barras diagonais decorativas */
+.slash {
+    font-weight: 300;
+    transform: rotate(20deg);
+    color: rgba(255,255,255,0.7);
+}
+.slash-inv {
+    font-weight: 300;
+    transform: rotate(-20deg);
+    color: rgba(255,255,255,0.7);
+}
+
+/* --- BARRA LATERAL DIREITA --- */
+.side-bar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 80px; /* Largura da faixa preta lateral */
+    background: #000; /* Faixa preta igual da imagem */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    border-radius: 100% 0 0 100% / 50% 0 0 50%; /* A curva suave no canto (opcional, igual imagem) */
+}
+
+/* Texto vertical */
+.side-bar span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 1rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #fff;
+}
+
+/* .side-bar::before {
+    /* Aquele arco preto curvado da imagem *
+    content: '';
+    position: absolute;
+    left: -40px;
+    top: 0;
+    height: 100%;
+    width: 50px;
+    background: #000;
+    border-radius: 50% 0 0 50%;
+    z-index: -1;
+} */
+
+/* --- RODAPÉ E BOTÃO --- */
+.footer-quote {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    text-align: left;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-top: 1px solid rgba(255,255,255,0.5);
+    padding-top: 20px;
+}
+
+.play-btn {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}

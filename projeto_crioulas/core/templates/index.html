@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crioulas Esporte Comunitário</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Oswald:wght@300;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'css/style_home.css' %}">
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <div class="background-overlay"></div>
+
+        <nav class="top-nav">
+            <a href="{% url 'historia:index' %}" class="active">HISTÓRIA</a>
+            <a href="#">GALERIA</a>
+            <a href="{% url 'conquistas:index' %}">CONQUISTAS</a>
+            <a href="#">CONTATO</a>
+        </nav>
+
+        <div class="logo-corner">
+            CRIOULAS <span>FC</span>
+        </div>
+
+        <div class="scattered-text">
+            <div class="line-1">
+                <span class="letter slash">/</span> 
+                <span class="letter">C</span>
+                <span class="letter">R</span>
+                <span class="letter">I</span>
+                
+            </div>
+            <div class="line-2">
+                <span class="letter">O</span>
+                <span class="letter">U</span>
+                <span class="letter">L</span>
+                <span class="letter">A</span>
+            </div>
+            <div class="line-3">
+                <span class="letter">S</span>
+                <span class="letter">F</span>
+                <span class="letter">C</span>
+                <span class="letter slash-inv">\</span>
+            </div>
+        </div>
+
+        <div class="footer-quote">
+            <p>Talento e disciplina juntos são a filosofia por trás do nosso jogo.</p>
+        </div>
+
+        <div class="play-btn">
+            <a href=""> REPRODUZIR VÍDEO ► <a/>
+        </div>
+
+        <div class="side-bar">
+            <span>PROJETOS SOCIAIS</span>
+            <span>PARCEIROS</span>
+        </div>
+
+    </div>
+
+</body>
+</html>

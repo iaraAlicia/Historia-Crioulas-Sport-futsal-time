@@ -1,0 +1,123 @@
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0f0f0f; /* Fundo escuro */
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    height: 100vh;
+    overflow: hidden; /* IMPEDE SCROLL NA PÁGINA INTEIRA */
+}
+
+/* === REUTILIZANDO ELEMENTOS DA HOME (Para manter identidade) === */
+.logo-corner {
+    position: absolute; top: 40px; left: 50px; z-index: 20;
+}
+.logo-corner a {
+    text-decoration: none; color: white; font-family: 'Antonio', sans-serif; font-size: 2rem; font-weight: 700;
+}
+.logo-corner span { color: #ff1493; }
+
+.top-nav {
+    position: absolute; top: 40px; right: 100px; z-index: 20; display: flex; gap: 30px;
+}
+.top-nav a {
+    text-decoration: none; color: rgba(255,255,255,0.7); font-family: 'Antonio', sans-serif; font-size: 1.2rem; transition: 0.3s;
+}
+.top-nav a:hover, .top-nav a.active {
+    color: #ff1493; text-shadow: 0 0 10px rgba(255, 20, 147, 0.5);
+}
+
+.side-bar {
+    position: absolute; right: 0; top: 0; height: 100%; width: 80px; background: #000;
+    display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 80px; z-index: 15;
+    border-radius: 100% 0 0 100% / 50% 0 0 50%;
+}
+.side-bar span {
+    writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: 4px; font-size: 0.9rem; color: #555;
+}
+
+/* === LAYOUT DIVIDIDO (SPLIT) === */
+.content-split {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Lado Esquerdo - A Imagem */
+.left-image {
+    width: 50%;
+    height: 100%;
+    /* COLOQUE AQUI A FOTO DO TIME OU DA CAMISA */
+    background-image: url('../img/bg-02.png'); 
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* Filtro Roxo sobre a imagem da esquerda */
+.left-image::after {
+    content: '';
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to right, rgba(75, 0, 130, 0.4), #0f0f0f);
+}
+
+/* Lado Direito - O Conteúdo */
+.right-content {
+    width: 50%; /* Ocupa a outra metade */
+    height: 100%;
+    padding: 120px 140px 50px 50px; /* Espaçamento interno */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Gradiente sutil no fundo direito */
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a0b1a 100%); 
+}
+
+/* Título */
+.section-title {
+    font-family: 'Antonio', sans-serif;
+    font-size: 4rem;
+    line-height: 1;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.highlight {
+    color: #ff1493; /* Rosa Neon */
+}
+
+/* === A CAIXA DE TEXTO COM SCROLL === */
+.scrollable-text-box {
+    max-height: 50vh; /* Define a altura máxima (50% da tela) */
+    overflow-y: auto; /* ATIVA O SCROLL SÓ AQUI se o texto for grande */
+    padding-right: 20px; /* Espaço para a barra de rolagem não colar no texto */
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #ccc;
+    text-align: justify;
+}
+
+/* === ESTILIZANDO A BARRA DE ROLAGEM (Scrollbar) === */
+/* Para navegadores baseados em Webkit (Chrome, Edge, Safari) */
+.scrollable-text-box::-webkit-scrollbar {
+    width: 6px; /* Barra bem fininha */
+}
+
+.scrollable-text-box::-webkit-scrollbar-track {
+    background: #222; /* Cor do trilho */
+    border-radius: 3px;
+}
+
+.scrollable-text-box::-webkit-scrollbar-thumb {
+    background: #ff1493; /* Cor da barra (ROSA) */
+    border-radius: 3px;
+}
+
+.scrollable-text-box::-webkit-scrollbar-thumb:hover {
+    background: #c71585; /* Cor ao passar o mouse */
+}

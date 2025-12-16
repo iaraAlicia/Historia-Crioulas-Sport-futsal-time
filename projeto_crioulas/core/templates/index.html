@@ -17,9 +17,9 @@
         <div class="background-overlay"></div>
 
         <nav class="top-nav">
-            <a href="#">HISTÓRIA</a>
+            <a href="{% url 'historia:index' %}" class="active">HISTÓRIA</a>
             <a href="#">GALERIA</a>
-            <a href="#">CONQUISTAS</a>
+            <a href="{% url 'conquistas:index' %}">CONQUISTAS</a>
             <a href="#">CONTATO</a>
         </nav>
 
@@ -54,7 +54,7 @@
         </div>
 
         <div class="play-btn">
-            REPRODUZIR VÍDEO ►
+            <a href=""> REPRODUZIR VÍDEO ► <a/>
         </div>
 
         <div class="side-bar">

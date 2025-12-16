@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Conquista
 
-# Register your models here.
+@admin.register(Conquista)
+class ConquistaAdmin(admin.ModelAdmin):
+    list_display = ('ano', 'titulo') # O que aparece na lista
+    search_fields = ('titulo', 'ano')

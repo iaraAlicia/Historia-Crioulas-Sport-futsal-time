@@ -9,3 +9,6 @@ def index(request):
     # você faria isso aqui (ex: lista de titulos).
     # Por enquanto, só renderiza o template base.
     return render(request, 'index.html')
+
+def historia(request):
+    return render(request, 'historia.html')

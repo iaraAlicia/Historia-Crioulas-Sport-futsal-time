@@ -84,6 +84,13 @@ body {
     font-weight: 700;
     letter-spacing: 2px;
 }
+.logo-corner {
+    position: absolute; top: 40px; left: 50px; z-index: 20;
+}
+.logo-corner a {
+    text-decoration: none; color: white; font-family: 'Antonio', sans-serif; font-size: 2rem; font-weight: 700;
+}
+.logo-corner span { color: #ff1493; }
 
 /* --- TEXTO ESPALHADO (C R I O U L A S) --- */
 .scattered-text {
@@ -185,4 +192,11 @@ body {
     letter-spacing: 3px;
     font-size: 0.9rem;
     cursor: pointer;
+    transition: all 0.5s ease 0.1s;
+    text-decoration: none;
+}
+
+.play-btn:hover{
+    left: 80px;
+    transform: scale(1.1);
 }

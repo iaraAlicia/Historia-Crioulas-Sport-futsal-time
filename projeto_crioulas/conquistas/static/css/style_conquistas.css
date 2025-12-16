@@ -1,0 +1,167 @@
+/* Reset e Base */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background-color: #050505;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Fundo */
+.bg-image {
+    position: absolute; top:0; left:0; width:100%; height:100%;
+    background-size: cover; background-position: center; opacity: 0.4;
+    transition: background-image 0.5s ease; z-index: -2;
+}
+.overlay-dark {
+    position: absolute; top:0; left:0; width:100%; height:100%;
+    background: linear-gradient(to right, #050505 25%, rgba(5,5,5,0.6) 100%); z-index: -1;
+}
+
+/* Layout Principal */
+.main-container {
+    display: flex; height: 100vh; align-items: center;
+}
+
+/* --- A ROLETA (WHEEL) --- */
+.wheel-wrapper {
+    width: 35%; /* Lado esquerdo */
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Joga os números pra direita, perto do conteúdo */
+    perspective: 1000px; /* IMPORTANTE: Dá a profundidade 3D */
+}
+
+/* A linha curva decorativa atrás */
+.curved-line {
+    position: absolute;
+    right: 0; top: 10%; bottom: 10%;
+    width: 150px;
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-radius: 0 50% 50% 0 / 0 20% 20% 0; /* Curva suave */
+    pointer-events: none;
+}
+
+.wheel-list {
+    position: relative;
+    width: 200px;
+    height: 400px; /* Altura da área visível da roleta */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end; /* Alinha texto à direita */
+}
+
+/* ESTILO DOS NÚMEROS */
+.wheel-item {
+    font-family: 'Antonio', sans-serif;
+    font-size: 3rem;
+    color: #555;
+    position: absolute; /* Para podermos mover livremente com transform */
+    right: 40px; /* Distância da linha curva */
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); /* Animação suave */
+    transform-origin: center right; /* O PIVÔ da rotação é a direita (onde está a curva) */
+    opacity: 0; /* Escondido por padrão */
+}
+
+/* --- ESTADOS DA ANIMAÇÃO (A CURVA) --- */
+
+/* 1. O Item Ativo (No meio, grande e Rosa) */
+.wheel-item.active {
+    opacity: 1;
+    color: #ff1493; /* ROSA NEON */
+    font-size: 6rem;
+    transform: translateY(0) translateX(20px) scale(1);
+    text-shadow: 0 0 20px rgba(255, 20, 147, 0.4);
+    z-index: 10;
+}
+
+/* 2. Item logo acima */
+.wheel-item.prev-1 {
+    opacity: 0.5;
+    transform: translateY(-90px) translateX(-20px) rotate(-15deg) scale(0.7);
+    z-index: 5;
+}
+
+/* 3. Item mais acima */
+.wheel-item.prev-2 {
+    opacity: 0.2;
+    transform: translateY(-160px) translateX(-50px) rotate(-30deg) scale(0.5);
+    z-index: 1;
+}
+
+/* 4. Item logo abaixo */
+.wheel-item.next-1 {
+    opacity: 0.5;
+    transform: translateY(90px) translateX(-20px) rotate(15deg) scale(0.7);
+    z-index: 5;
+}
+
+/* 5. Item mais abaixo */
+.wheel-item.next-2 {
+    opacity: 0.2;
+    transform: translateY(160px) translateX(-50px) rotate(30deg) scale(0.5);
+    z-index: 1;
+}
+
+/* Itens escondidos */
+.wheel-item.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Controles (Setinhas) */
+.controls {
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 350px; /* Afasta uma da outra */
+    pointer-events: none; /* Deixa clicar através */
+}
+.controls button {
+    pointer-events: auto;
+    background: none; border: none; color: #ff1493; font-size: 1.5rem; cursor: pointer;
+    opacity: 0.5; transition: 0.3s;
+}
+.controls button:hover { opacity: 1; transform: scale(1.2); }
+
+
+/* --- LADO DIREITO (Conteúdo) --- */
+.content-display {
+    width: 60%;
+    padding-left: 80px;
+}
+
+.category-tag {
+    color: #888; letter-spacing: 4px; font-size: 0.9rem; margin-bottom: 15px;
+}
+
+.main-title {
+    font-family: 'Antonio', sans-serif;
+    font-size: 5rem;
+    text-transform: uppercase;
+    line-height: 0.9;
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 1.2rem; color: #ccc; max-width: 500px; margin-bottom: 40px; line-height: 1.6;
+}
+
+.stats-box {
+    color: #ff1493; font-weight: bold; letter-spacing: 2px; border-top: 1px solid #333; padding-top: 20px; display: inline-block;
+}
+
+/* Nav Superior */
+.top-nav {
+    position: absolute; top: 40px; right: 80px; z-index: 20; display: flex; gap: 30px;
+}
+.top-nav a { text-decoration: none; color: #888; font-family: 'Antonio', sans-serif; font-size: 1.2rem; }
+.top-nav a.active { color: white; border-bottom: 2px solid #ff1493; }

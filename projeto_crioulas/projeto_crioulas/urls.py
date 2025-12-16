@@ -21,7 +21,16 @@ from django.contrib import admin
 from django.urls import path, include
 from core import views # Importando a view do core
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'), 
+    path('historia/', include('historia.urls')),
+    path('conquistas/', include('conquistas.urls')),
+    path('galeria/', include('galeria.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

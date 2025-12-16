@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>História - Crioulas FC</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Oswald:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'css/style_historia.css' %}">
+</head>
+<body>
+
+    <div class="page-container">
+        
+        <div class="logo-corner">
+            <a href="/">CRIOULAS <span>FC</span></a>
+        </div>
+
+        <nav class="top-nav">
+            <a href="{% url 'historia:index' %}" class="active">HISTÓRIA</a>
+            
+            <a href="{% url 'galeria:index'%}">GALERIA</a> 
+            <a href="#">CONTATO</a>
+        </nav>
+
+        <div class="side-bar">
+            <span>PROJETOS SOCIAIS</span>
+            <span>PARCEIROS</span>
+        </div>
+
+        <main class="content-split">
+            <div class="left-image"></div> <div class="right-content">
+                <h2 class="section-title">A HISTÓRIA DAS <br> <span class="highlight">CRIOULAS</span></h2>
+
+                <div class="scrollable-text-box">
+                    <p>
+                        O Crioulas Esporte Comunitário nasceu da força e da necessidade de representatividade. Em Conceição das Crioulas, o chão batido sempre contou histórias...
+                    </p>
+                    <p>
+                        <strong>A Fundação</strong><br>
+                        Tudo começou com a união das mulheres que queriam ocupar espaços antes dominados apenas pelos homens. O futsal se tornou nossa ferramenta de expressão.
+                    </p>
+                    <p>
+                        <strong>As Cores</strong><br>
+                        O Roxo e o Rosa não são apenas estética; representam a luta feminista e a vitalidade da mulher quilombola.
+                    </p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

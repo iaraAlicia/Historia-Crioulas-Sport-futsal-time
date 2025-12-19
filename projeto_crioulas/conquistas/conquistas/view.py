@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Conquista
 from .forms import ConquistaForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required # Importante para segurança
 
 # A view pública (que já existia)
 def index(request):
@@ -32,14 +32,3 @@ def deletar_conquista(request, id):
     item = Conquista.objects.get(id=id)
     item.delete()
     return redirect('conquistas:painel')
-
-
-
-
-def historia(request):
-    return render(request, 'historia/index.html')
-
-from django.shortcuts import render
-
-def home(request):
-    return render(request, 'index.html')

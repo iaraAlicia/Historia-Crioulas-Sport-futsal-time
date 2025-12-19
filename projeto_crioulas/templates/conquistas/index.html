@@ -1,7 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
+<<<<<<< Updated upstream:projeto_crioulas/templates/conquistas/index.html
 
 {% block title %}Conquistas - Crioulas FC{% endblock %}
+=======
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Conquistas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Oswald:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style_conquistas.css' %}">
+</head>
+<body>
+
+    <div class="fixed-background" style="background-image: url('{% static 'img/bg-campo.jpg' %}');"></div>
+>>>>>>> Stashed changes:projeto_crioulas/conquistas/templates/conquistas/index.html
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/conquistas.css' %}">
@@ -19,20 +33,24 @@
             <div class="wheel-list" id="wheel-list">
                 {% for item in conquistas %}
                     <div class="wheel-item" 
-                         onclick="selectYear({{ forloop.counter0 }})"
                          data-index="{{ forloop.counter0 }}"
+                         onclick="selectYear({{ forloop.counter0 }})"
                          data-titulo="{{ item.titulo }}"
                          data-desc="{{ item.descricao }}"
+<<<<<<< Updated upstream:projeto_crioulas/templates/conquistas/index.html
                          /* AQUI ESTAVA O ERRO: Agora pega a URL certa do upload */
+=======
+>>>>>>> Stashed changes:projeto_crioulas/conquistas/templates/conquistas/index.html
                          data-img="{{ item.imagem.url }}">
                         {{ item.ano }}
                     </div>
                 {% endfor %}
             </div>
-            
+
             <div class="controls">
-                <button onclick="move(-1)">▲</button>
-                <button onclick="move(1)">▼</button>
+                <button id="btn-up" onclick="move(-1)">▲</button>
+                
+                <button id="btn-down" onclick="move(1)">▼</button>
             </div>
         </div>
 
@@ -41,19 +59,29 @@
         </div>
 
         <div class="content-column">
+<<<<<<< Updated upstream:projeto_crioulas/templates/conquistas/index.html
             <h3 class="category-tag">#TRAJETÓRIA</h3>
+=======
+            <h3 style="color: #ff1493; letter-spacing: 3px;">#TRAJETÓRIA</h3>
+>>>>>>> Stashed changes:projeto_crioulas/conquistas/templates/conquistas/index.html
             <h1 id="display-title" class="main-title">...</h1>
             <p id="display-desc" class="description">...</p>
-            <div class="stats-box">CONCEIÇÃO DAS CRIOULAS</div>
         </div>
+
     </div>
 
     <script>
         let currentIndex = 0;
         const items = document.querySelectorAll('.wheel-item');
         const totalItems = items.length;
+        const btnUp = document.getElementById('btn-up');
+        const btnDown = document.getElementById('btn-down');
 
+<<<<<<< Updated upstream:projeto_crioulas/templates/conquistas/index.html
         // Inicia selecionando o último ano (mais recente)
+=======
+        // Inicializa no último item (mais recente)
+>>>>>>> Stashed changes:projeto_crioulas/conquistas/templates/conquistas/index.html
         if (totalItems > 0) {
             selectYear(totalItems - 1);
         }
@@ -61,6 +89,7 @@
         function selectYear(index) {
             currentIndex = index;
             updateWheel();
+            updateButtons(); // Atualiza a cor dos botões
         }
 
         function move(direction) {
@@ -70,11 +99,35 @@
             }
         }
 
+        function updateButtons() {
+            // Se índice é 0 (primeiro item), desativa botão "CIMA" (que na lógica visual é anterior)
+            // OBS: A lógica de cima/baixo depende da ordem da sua lista. 
+            // Se sua lista é [2020, 2021, 2022]:
+            // index 0 = 2020. index 2 = 2022.
+            
+            // Botão CIMA (diminuir index)
+            if (currentIndex === 0) {
+                btnUp.classList.add('disabled');
+            } else {
+                btnUp.classList.remove('disabled');
+            }
+
+            // Botão BAIXO (aumentar index)
+            if (currentIndex === totalItems - 1) {
+                btnDown.classList.add('disabled');
+            } else {
+                btnDown.classList.remove('disabled');
+            }
+        }
+
         function updateWheel() {
             const titleEl = document.getElementById('display-title');
             const descEl = document.getElementById('display-desc');
+<<<<<<< Updated upstream:projeto_crioulas/templates/conquistas/index.html
             
             // AGORA PEGAMOS A TAG <IMG> DO MEIO, NÃO O FUNDO
+=======
+>>>>>>> Stashed changes:projeto_crioulas/conquistas/templates/conquistas/index.html
             const playerImg = document.getElementById('player-img');
 
             items.forEach((item, i) => {
@@ -90,6 +143,7 @@
                     titleEl.innerText = item.getAttribute('data-titulo');
                     descEl.innerText = item.getAttribute('data-desc');
                     
+<<<<<<< Updated upstream:projeto_crioulas/templates/conquistas/index.html
                     // Atualiza a Imagem Central com animação de troca
                     const newSrc = item.getAttribute('data-img');
                     
@@ -121,6 +175,25 @@
                 } else {
                     item.classList.add('hidden');
                 }
+=======
+                    // Atualiza Imagem Central
+                    const newSrc = item.getAttribute('data-img');
+                    if (playerImg.src !== newSrc) {
+                        playerImg.style.opacity = 0;
+                        playerImg.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            playerImg.src = newSrc;
+                            playerImg.style.opacity = 1;
+                            playerImg.style.transform = 'scale(1)';
+                        }, 300);
+                    }
+
+                } else if (distance === -1) item.classList.add('prev-1');
+                else if (distance === -2) item.classList.add('prev-2');
+                else if (distance === 1) item.classList.add('next-1');
+                else if (distance === 2) item.classList.add('next-2');
+                else item.classList.add('hidden');
+>>>>>>> Stashed changes:projeto_crioulas/conquistas/templates/conquistas/index.html
             });
         }
     </script>

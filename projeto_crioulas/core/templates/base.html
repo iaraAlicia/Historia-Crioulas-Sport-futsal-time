@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{% block title %}Crioulas FC{% endblock %}</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Oswald:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'css/style_global.css' %}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,132 +1,43 @@
-/* --- CORES DO TIME --- */
-:root {
-    --roxo-time: #4b0082; /* Indigo/Roxo forte */
-    --rosa-time: #ff007f; /* Rosa choque */
-    --branco: #ffffff;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Oswald', sans-serif; /* Fonte estilo pôster */
-    background-color: #000;
-    color: var(--branco);
-    overflow-x: hidden;
-}
-
-/* --- TELA INICIAL (HERO) IGUAL AO PRINT --- */
-.hero-screen {
-    position: relative;
-    height: 100vh; /* Ocupa 100% da altura da tela */
-    width: 100%;
+/* --- MENU PADRÃO CENTRALIZADO --- */
+.universal-nav {
+    position: fixed; /* Fixo no topo, mesmo com scroll */
+    top: 40px;
+    left: 0;
+    width: 100%; /* Ocupa a tela toda */
     display: flex;
+    justify-content: center; /* CENTRALIZA OS ITENS */
     align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    gap: 60px; /* Espaço entre os links */
+    z-index: 1000; /* Fica acima de tudo (roleta, imagens, etc) */
 }
 
-/* A Imagem de Fundo */
-.hero-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Coloque a foto de uma jogadora ou do time aqui */
-    background-image: url('../img/bg-01.png'); 
-    background-size: cover;
-    background-position: center;
-    z-index: 1;
-}
-
-/* O Filtro Roxo/Rosa por cima da foto (Igual o vermelho do print) */
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, rgba(75, 0, 130, 0.8), rgba(255, 0, 127, 0.8));
-    z-index: 2;
-    mix-blend-mode: multiply; /* Faz a foto se misturar com a cor */
-}
-
-/* --- O TEXTO GIGANTE (ESTILO MICKI 77) --- */
-.hero-content {
-    position: relative;
-    z-index: 3; /* Fica acima da foto e do filtro */
-    text-align: center;
-    width: 100%;
-}
-
-.titulo-zao {
-    font-size: 15vw; /* Gigante, escala com a tela */
-    font-weight: 700;
-    line-height: 0.8;
-    text-transform: uppercase;
-    color: transparent;
-    -webkit-text-stroke: 2px var(--branco); /* Apenas o contorno branco */
-    /* Se quiser preenchido, mude color para white e tire o stroke */
-    opacity: 0.9;
-    letter-spacing: -5px;
-}
-
-.subtitulo-zao {
-    font-size: 1.5rem;
-    letter-spacing: 5px;
-    margin-top: 20px;
-    color: var(--branco);
-    text-transform: uppercase;
-}
-
-/* --- MENU NAVEGAÇÃO (DISCRETO NO CANTO) --- */
-.top-nav {
-    position: absolute;
-    top: 30px;
-    right: 50px;
-    z-index: 10;
-    display: flex;
-    gap: 30px;
-}
-
-.top-nav a {
-    color: var(--branco);
+.universal-nav a {
     text-decoration: none;
-    font-weight: bold;
-    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6); /* Branco meio transparente */
+    font-family: 'Antonio', sans-serif; /* Sua fonte padrão */
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    transition: 0.3s ease;
     text-transform: uppercase;
-    transition: color 0.3s;
+    position: relative;
 }
 
-.top-nav a:hover {
-    color: var(--rosa-time); /* Brilha rosa ao passar o mouse */
+/* Efeito Hover e Active */
+.universal-nav a:hover, 
+.universal-nav a.active {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 20, 147, 0.5); /* Brilho rosa */
 }
 
-/* --- RODAPÉ DA TELA INICIAL --- */
-.hero-footer {
+/* Opcional: Aquele tracinho embaixo do link ativo */
+.universal-nav a.active::after {
+    content: '';
     position: absolute;
-    bottom: 40px;
-    left: 50px;
-    z-index: 10;
-    max-width: 400px;
-}
-
-.hero-footer p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-
-/* --- OUTRAS SESSÕES (PARA QUANDO ROLAR) --- */
-.section-full {
-    min-height: 100vh; /* Cada sessão também ocupa a tela toda */
-    padding: 100px 50px;
-    background-color: #111;
-    border-top: 1px solid #333;
-    display: flex;
-    align-items: center;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 2px;
+    background-color: #ff1493; /* Rosa */
 }

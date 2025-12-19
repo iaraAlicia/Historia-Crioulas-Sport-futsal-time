@@ -143,5 +143,14 @@ LOGOUT_REDIRECT_URL = '/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+<<<<<<< Updated upstream
 LOGIN_REDIRECT_URL = '/conquistas/painel/' 
 LOGOUT_REDIRECT_URL = '/'
+=======
+# Configurações de Mídia (Uploads)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_REDIRECT_URL = '/conquistas/painel/'
+LOGOUT_REDIRECT_URL = '/'
+>>>>>>> Stashed changes

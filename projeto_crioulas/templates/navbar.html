@@ -1,22 +1,15 @@
-<<<<<<< Updated upstream:projeto_crioulas/templates/navbar.html
 <a href="/" class="logo-global">CRIOULAS <span>FC</span></a>
 
 <nav class="navbar-custom">
-    <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">HOME</a>
-    <a href="{% url 'historia:index' %}" class="{% if 'historia' in request.path %}active{% endif %}">HISTÓRIA</a>
-    <a href="{% url 'conquistas:index' %}" class="{% if 'conquistas' in request.path %}active{% endif %}">CONQUISTAS</a>
-    <a href="{% url 'conquistas:painel' %}" class="{% if 'painel' in request.path or 'accounts' in request.path %}active{% endif %}">
+    <a href="{% url 'home' %}">HOME</a>
+    <a href="{% url 'historia:index' %}">HISTÓRIA</a>
+    <a href="{% url 'conquistas:index' %}">CONQUISTAS</a>
+    
+    <a href="{% url 'conquistas:painel' %}">
         {% if user.is_authenticated %}
             PAINEL
         {% else %}
             LOGIN
         {% endif %}
     </a>
-=======
-<nav class="universal-nav">
-    <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">HOME</a>
-    <a href="{% url 'historia:index' %}" class="{% if 'historia' in request.path %}active{% endif %}">HISTÓRIA</a>
-    <a href="{% url 'conquistas:index' %}" class="{% if 'conquistas' in request.path %}active{% endif %}">CONQUISTAS</a>
-    <a href="{% url 'galeria:index' %}" class="{% if 'galeria' in request.path %}active{% endif %}">GALERIA</a>
->>>>>>> Stashed changes:projeto_crioulas/core/templates/navbar.html
 </nav>

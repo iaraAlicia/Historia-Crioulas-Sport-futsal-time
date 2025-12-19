@@ -1,107 +1,52 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Conquistas - Crioulas FC{% endblock %}
+{% block title %}Crioulas Esporte Comunitário{% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/conquistas.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_home.css' %}">
 {% endblock %}
 
 {% block content %}
 
-    <div class="fixed-background" style="background-image: url('{% static 'img/fundo-textura.jpg' %}');"></div>
-
     <div class="main-container">
         
-        <div class="wheel-wrapper">
-            <div class="curved-line"></div>
-            
-            <div class="wheel-list" id="wheel-list">
-                {% for item in conquistas %}
-                    <div class="wheel-item" 
-                         onclick="selectYear({{ forloop.counter0 }})"
-                         data-index="{{ forloop.counter0 }}"
-                         data-titulo="{{ item.titulo }}"
-                         data-desc="{{ item.descricao }}"
-                         data-img="{{ item.imagem.url }}"> {{ item.ano }}
-                    </div>
-                {% endfor %}
+        <div class="background-overlay"></div>
+
+        <div class="scattered-text">
+            <div class="line-1">
+                <span class="letter slash">/</span> 
+                <span class="letter">C</span>
+                <span class="letter">R</span>
+                <span class="letter">I</span>
             </div>
-            
-            <div class="controls">
-                <button onclick="move(-1)">▲</button>
-                <button onclick="move(1)">▼</button>
+            <div class="line-2">
+                <span class="letter">O</span>
+                <span class="letter">U</span>
+                <span class="letter">L</span>
+                <span class="letter">A</span>
+            </div>
+            <div class="line-3">
+                <span class="letter">S</span>
+                <span class="letter">F</span>
+                <span class="letter">C</span>
+                <span class="letter slash-inv">\</span>
             </div>
         </div>
 
-        <div class="player-column">
-            <img id="player-img" src="" alt="Destaque" class="player-cutout">
+        <div class="footer-quote">
+            <p>Talento e disciplina juntos são a filosofia por trás do nosso jogo.</p>
         </div>
 
-        <div class="content-column">
-            <h3 class="category-tag">#TRAJETÓRIA</h3>
-            <h1 id="display-title" class="main-title">...</h1>
-            <p id="display-desc" class="description">...</p>
-            <div class="stats-box">CONCEIÇÃO DAS CRIOULAS</div>
+        <div class="play-btn">
+            <a href="#"> REPRODUZIR VÍDEO ► </a>
         </div>
+
+        <div class="side-bar">
+            <span>PROJETOS SOCIAIS</span>
+            <span>PARCEIROS</span>
+        </div>
+
     </div>
-
-    <script>
-        let currentIndex = 0;
-        const items = document.querySelectorAll('.wheel-item');
-        const totalItems = items.length;
-
-        if (totalItems > 0) {
-            selectYear(totalItems - 1);
-        }
-
-        function selectYear(index) {
-            currentIndex = index;
-            updateWheel();
-        }
-
-        function move(direction) {
-            let newIndex = currentIndex + direction;
-            if (newIndex >= 0 && newIndex < totalItems) {
-                selectYear(newIndex);
-            }
-        }
-
-        function updateWheel() {
-            const titleEl = document.getElementById('display-title');
-            const descEl = document.getElementById('display-desc');
-            const playerImg = document.getElementById('player-img');
-
-            items.forEach((item, i) => {
-                const distance = i - currentIndex;
-                item.className = 'wheel-item';
-
-                if (distance === 0) {
-                    item.classList.add('active');
-                    titleEl.innerText = item.getAttribute('data-titulo');
-                    descEl.innerText = item.getAttribute('data-desc');
-                    
-                    const newSrc = item.getAttribute('data-img');
-                    
-                    if (playerImg.src !== newSrc && newSrc) {
-                        playerImg.style.opacity = 0;
-                        playerImg.style.transform = 'scale(0.9)';
-                        setTimeout(() => {
-                            playerImg.src = newSrc;
-                            playerImg.style.opacity = 1;
-                            playerImg.style.transform = 'scale(1)';
-                        }, 300);
-                    } else if (playerImg.getAttribute('src') === "") {
-                        playerImg.src = newSrc;
-                        playerImg.style.opacity = 1;
-                    }
-                } else if (distance === -1) { item.classList.add('prev-1'); }
-                else if (distance === -2) { item.classList.add('prev-2'); }
-                else if (distance === 1) { item.classList.add('next-1'); }
-                else if (distance === 2) { item.classList.add('next-2'); }
-                else { item.classList.add('hidden'); }
-            });
-        }
-    </script>
 
 {% endblock %}

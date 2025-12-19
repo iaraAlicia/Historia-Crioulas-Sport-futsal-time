@@ -1,32 +1,31 @@
 from django.shortcuts import render, redirect
 from .models import Conquista
 from .forms import ConquistaForm
-from django.contrib.auth.decorators import login_required # Importante para segurança
+from django.contrib.auth.decorators import login_required
 
-# A view pública (que já existia)
+# 1. A Página Pública (Roleta)
 def index(request):
     conquistas = Conquista.objects.all().order_by('ano')
     context = {'conquistas': conquistas}
     return render(request, 'conquistas/index.html', context)
 
-# --- NOVA VIEW DO PAINEL ---
-@login_required # Só deixa entrar se estiver logado
+# 2. O Painel Administrativo (Só com senha)
+@login_required 
 def painel(request):
-    # Lógica para salvar o formulário
     if request.method == 'POST':
-        form = ConquistaForm(request.POST, request.FILES) # request.FILES é obrigatório para imagens
+        form = ConquistaForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('conquistas:painel') # Recarrega a página limpa
+            return redirect('conquistas:painel') # Recarrega para limpar
     else:
         form = ConquistaForm()
 
-    # Lista para mostrar no painel
-    conquistas = Conquista.objects.all().order_by('-ano') # Do mais novo pro mais antigo
+    # Lista para tabela (Do mais novo pro antigo)
+    conquistas_lista = Conquista.objects.all().order_by('-ano') 
     
-    return render(request, 'conquistas/painel.html', {'form': form, 'conquistas': conquistas})
+    return render(request, 'conquistas/painel.html', {'form': form, 'conquistas': conquistas_lista})
 
-# View para deletar (Opcional, mas útil)
+# 3. Função de Deletar
 @login_required
 def deletar_conquista(request, id):
     item = Conquista.objects.get(id=id)

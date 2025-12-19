@@ -1,0 +1,164 @@
+/* static/css/conquistas.css */
+
+/* Reset Básico */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* O body herda do global, mas reforçamos o overflow hidden para não ter rolagem */
+body {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* === 1. FUNDO FIXO (Fica atrás de tudo) === */
+.fixed-background {
+    position: absolute; top:0; left:0; width:100%; height:100%;
+    background-size: cover; background-position: center;
+    filter: blur(8px) brightness(0.2); /* Escuro e desfocado para destaque */
+    z-index: -10;
+}
+
+/* === 2. O GRID PRINCIPAL (A Mágica acontece aqui) === */
+/* Dividimos a tela em 3 colunas verticais */
+.main-container {
+    display: grid;
+    grid-template-columns: 30% 40% 30%; /* Roleta (30%) | Imagem (40%) | Texto (30%) */
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+/* === COLUNA 1: A ROLETA === */
+.wheel-wrapper {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Alinha os números perto da imagem */
+    perspective: 1000px;
+    z-index: 20; /* Fica POR CIMA da imagem do meio se ela crescer demais */
+}
+
+/* Linha decorativa curva */
+.curved-line {
+    position: absolute; right: 0; top: 15%; bottom: 15%;
+    width: 100px;
+    border-right: 1px solid rgba(255,255,255,0.15);
+    border-radius: 0 50% 50% 0 / 0 20% 20% 0;
+    pointer-events: none;
+}
+
+.wheel-list {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end; /* Números alinhados à direita */
+    padding-right: 30px;
+}
+
+.wheel-item {
+    font-family: 'Antonio', sans-serif;
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.3);
+    position: absolute;
+    right: 30px;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform-origin: center right;
+    white-space: nowrap;
+}
+
+/* Animação dos Números */
+.wheel-item.active {
+    opacity: 1; color: #ff1493; font-size: 6rem;
+    transform: translateY(0) translateX(10px) scale(1);
+    z-index: 10;
+    text-shadow: 0 0 30px rgba(255, 20, 147, 0.6);
+}
+
+.wheel-item.prev-1 { opacity: 0.6; transform: translateY(-90px) translateX(-10px) rotate(-15deg) scale(0.7); }
+.wheel-item.prev-2 { opacity: 0.3; transform: translateY(-160px) translateX(-40px) rotate(-30deg) scale(0.5); }
+.wheel-item.next-1 { opacity: 0.6; transform: translateY(90px) translateX(-10px) rotate(15deg) scale(0.7); }
+.wheel-item.next-2 { opacity: 0.3; transform: translateY(160px) translateX(-40px) rotate(30deg) scale(0.5); }
+.wheel-item.hidden { opacity: 0; pointer-events: none; }
+
+
+/* === COLUNA 2: A IMAGEM CENTRAL (NOVA) === */
+.player-column {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: flex-end; /* Alinha a imagem na parte de baixo da tela */
+    justify-content: center;
+    z-index: 10; /* Fica no meio (atrás do texto e da roleta) */
+    pointer-events: none; /* Permite clicar nos botões através da imagem */
+}
+
+.player-cutout {
+    max-height: 90vh; /* Altura máxima para não estourar a tela */
+    max-width: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(0,0,0,0.5)); /* Sombra para dar destaque */
+    
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+
+/* === COLUNA 3: O TEXTO === */
+.content-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 40px;
+    padding-right: 40px;
+    z-index: 20; /* Fica POR CIMA da imagem */
+}
+
+.category-tag {
+    color: #888; letter-spacing: 4px; font-size: 0.9rem; margin-bottom: 15px;
+}
+
+.main-title {
+    font-family: 'Antonio', sans-serif;
+    font-size: 5rem;
+    text-transform: uppercase;
+    line-height: 0.9;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+}
+
+.description {
+    font-size: 1.1rem; color: #ccc; 
+    background: rgba(0,0,0,0.6); /* Fundo semi-transparente para leitura */
+    padding: 20px; 
+    border-left: 4px solid #ff1493;
+    backdrop-filter: blur(5px);
+}
+
+.stats-box {
+    margin-top: 20px;
+    color: #ff1493; font-weight: bold; letter-spacing: 2px;
+}
+
+
+/* === CONTROLES (BOTÕES) === */
+.controls {
+    position: absolute;
+    left: 10%; /* Posiciona as setas */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px; /* Distância entre a seta de cima e a de baixo */
+    z-index: 30;
+}
+
+.controls button {
+    background: none; border: none; color: white; font-size: 2rem; 
+    cursor: pointer; transition: 0.3s; opacity: 0.5;
+}
+
+.controls button:hover { color: #ff1493; transform: scale(1.2); opacity: 1; }

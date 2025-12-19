@@ -10,5 +10,11 @@ def index(request):
     # Por enquanto, só renderiza o template base.
     return render(request, 'index.html')
 
+
 def historia(request):
-    return render(request, 'historia.html')
+    return render(request, 'historia/index.html')
+
+from django.shortcuts import render
+
+def home(request):
+    return render(request, 'index.html')

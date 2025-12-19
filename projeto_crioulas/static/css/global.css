@@ -1,0 +1,55 @@
+/* Fontes */
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Oswald:wght@300;400;700&display=swap');
+
+/* Reset Básico */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: #050505;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    overflow-x: hidden;
+}
+
+/* === MENU UNIVERSAL (O estilo da sua Home) === */
+.navbar-custom {
+    position: fixed;
+    top: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 60px;
+    gap: 50px;
+    z-index: 1000;
+}
+
+.navbar-custom a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.7);
+    font-family: 'Antonio', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.navbar-custom a:hover,
+.navbar-custom a.active {
+    color: #ff1493; /* Rosa Neon */
+    text-shadow: 0 0 10px rgba(255, 20, 147, 0.6);
+}
+
+/* === LOGO (Canto Esquerdo) === */
+.logo-global {
+    position: fixed;
+    top: 40px;
+    left: 50px;
+    font-family: 'Antonio', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    z-index: 1001;
+    text-decoration: none;
+    color: white;
+}
+.logo-global span { color: #ff1493; }

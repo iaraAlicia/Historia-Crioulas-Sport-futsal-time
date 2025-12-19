@@ -25,8 +25,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('accounts/', include('django.contrib.auth.urls')), # <--- ADICIONE ISSO
+    path('', include('core.urls')),
+    
     path('admin/', admin.site.urls),
     path('', views.index, name='home'), 
+
     path('historia/', include('historia.urls')),
     path('conquistas/', include('conquistas.urls')),
     path('galeria/', include('galeria.urls')),

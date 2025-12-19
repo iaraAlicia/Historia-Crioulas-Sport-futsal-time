@@ -1,31 +1,17 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crioulas Esporte Comunitário</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Oswald:wght@300;500&display=swap" rel="stylesheet">
-    
+
+{% block title %}Crioulas Esporte Comunitário{% endblock %}
+
+{% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/style_home.css' %}">
-</head>
-<body>
+{% endblock %}
+
+{% block content %}
 
     <div class="main-container">
         
         <div class="background-overlay"></div>
-
-        <nav class="top-nav">
-            <a href="{% url 'historia:index' %}" class="active">HISTÓRIA</a>
-            <a href="#">GALERIA</a>
-            <a href="{% url 'conquistas:index' %}">CONQUISTAS</a>
-            <a href="#">CONTATO</a>
-        </nav>
-
-        <div class="logo-corner">
-            CRIOULAS <span>FC</span>
-        </div>
 
         <div class="scattered-text">
             <div class="line-1">
@@ -33,7 +19,6 @@
                 <span class="letter">C</span>
                 <span class="letter">R</span>
                 <span class="letter">I</span>
-                
             </div>
             <div class="line-2">
                 <span class="letter">O</span>
@@ -54,7 +39,7 @@
         </div>
 
         <div class="play-btn">
-            <a href=""> REPRODUZIR VÍDEO ► <a/>
+            <a href="#"> REPRODUZIR VÍDEO ► </a>
         </div>
 
         <div class="side-bar">
@@ -64,5 +49,4 @@
 
     </div>
 
-</body>
-</html>
+{% endblock %}

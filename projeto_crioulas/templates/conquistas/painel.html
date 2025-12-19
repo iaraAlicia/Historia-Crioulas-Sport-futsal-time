@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel Admin - Crioulas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Oswald:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        body { background-color: #111; color: #ddd; font-family: 'Oswald', sans-serif; }
+        
+        /* Estilização Dark do Bootstrap */
+        .dark-input { background-color: #222; border: 1px solid #333; color: white; }
+        .dark-input:focus { background-color: #333; color: white; border-color: #ff1493; box-shadow: none; }
+        
+        .btn-rosa { background-color: #ff1493; border: none; font-family: 'Antonio'; letter-spacing: 1px; }
+        .btn-rosa:hover { background-color: #d1107a; color: white; }
+        
+        .table-dark { background-color: #1a1a1a; --bs-table-bg: #1a1a1a; }
+        h1, h3 { font-family: 'Antonio'; color: white; }
+        
+        .header-admin { border-bottom: 1px solid #333; padding: 20px 0; margin-bottom: 30px; }
+        .img-preview { width: 50px; height: 50px; object-fit: cover; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <div class="container py-4">
+        
+        <div class="header-admin d-flex justify-content-between align-items-center">
+            <h1>PAINEL ADMIN</h1>
+            <div>
+                <span class="me-3">Olá, {{ user.username }}</span>
+                <a href="/" class="btn btn-outline-light btn-sm">Ver Site</a>
+                
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger btn-sm">Sair</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-5">
+                <div class="p-4" style="background: #1a1a1a; border-radius: 8px;">
+                    <h3 class="mb-4">Nova Conquista</h3>
+                    
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label>Ano</label>
+                            {{ form.ano }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label>Título</label>
+                            {{ form.titulo }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label>Descrição</label>
+                            {{ form.descricao }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label>Imagem (Recorte/PNG)</label>
+                            {{ form.imagem }}
+                        </div>
+
+                        <button type="submit" class="btn btn-rosa w-100">CADASTRAR</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <h3>Conquistas Cadastradas</h3>
+                <table class="table table-dark table-hover mt-3">
+                    <thead>
+                        <tr>
+                            <th>Img</th>
+                            <th>Ano</th>
+                            <th>Título</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in conquistas %}
+                        <tr>
+                            <td>
+                                {% if item.imagem %}
+                                    <img src="{{ item.imagem.url }}" class="img-preview">
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                            <td class="fw-bold text-white">{{ item.ano }}</td>
+                            <td>{{ item.titulo }}</td>
+                            <td>
+                                <a href="{% url 'conquistas:deletar' item.id %}" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que quer apagar?')">X</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center py-4 text-muted">Nenhuma conquista cadastrada.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
